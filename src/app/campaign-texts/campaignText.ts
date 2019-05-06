@@ -1,5 +1,5 @@
 export class CampaignText {
-    id: number;
+    id: string;
     name: string;
     stage: string; // этап действия
     text: string; // содержимое

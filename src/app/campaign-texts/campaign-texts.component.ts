@@ -9,22 +9,43 @@ import { CampaignText } from './campaignText';
 
 export class CampaignTextsComponent implements OnInit {
 
-  lsVarName: 'masters-dashboard.campaign.text'
+  static lsVarName = 'masters-dashboard.campaign.text'
 
   campaignTextList
 
   constructor() { }
 
   ngOnInit() {
-      let campaignText = new CampaignText()
-      campaignText.id = 1
-      campaignText.name = 'Приветствие'
-      campaignText.stage = 'Начало'
-      campaignText.text = 'Приветствую вас, приключенцы!'
-
-      localStorage.setItem(this.lsVarName, JSON.stringify([campaignText, campaignText]))
-
-      this.campaignTextList = JSON.parse(localStorage.getItem(this.lsVarName));
+      this.loadFromStorage()
+      setInterval( this.saveToLocalStorage.bind(this) , 3000 )
   }
 
+  loadFromStorage() {
+      let itemList = localStorage.getItem(CampaignTextsComponent.lsVarName)
+      if (!itemList) {
+          itemList = "{}"
+      }
+      this.campaignTextList = JSON.parse(itemList)
+  }
+
+  addText(): void {
+      const ct = new CampaignText()
+      ct.id = this.generateUniqueId()
+      console.log(this.campaignTextList)
+      this.campaignTextList[ct.id] = ct
+      this.saveToLocalStorage()
+  }
+
+  saveToLocalStorage() {
+      localStorage.setItem(CampaignTextsComponent.lsVarName, JSON.stringify(this.campaignTextList))
+  }
+
+  removeText(campaignText: CampaignText): void {
+      delete(this.campaignTextList[campaignText.id])
+      this.saveToLocalStorage()
+  }
+
+  generateUniqueId(): string {
+      return (Date.now().toString(36) + Math.random().toString(36).substr(2, 5)).toUpperCase()
+  }
 }

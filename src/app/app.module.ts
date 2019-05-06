@@ -4,15 +4,19 @@ import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { CampaignTextsComponent } from './campaign-texts/campaign-texts.component';
+import { AppRoutingModule } from './app-routing.module';
+import { PartyComponent } from './party/party.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CampaignTextsComponent
+    CampaignTextsComponent,
+    PartyComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

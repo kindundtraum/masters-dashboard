@@ -1,12 +1,19 @@
-<div *ngFor="let campaignText of campaignTextList">
-    <span>id: {{campaignText.id}}</span><br />
-    <label>name:
-        <input [(ngModel)]="campaignText.name" placeholder="name"/>
-    </label><br />
-    <label>stage:
-        <input [(ngModel)]="campaignText.stage" placeholder="stage"/>
-    </label><br />
-    <label>text:
-        <input [(ngModel)]="campaignText.text" placeholder="text"/>
-    </label>
+<div class="campaignTextBlock" *ngFor="let campaignText of campaignTextList | keyvalue">
+    <div class="campaignTextDiv">
+        <span class="campaignTextId">id: {{campaignText.value.id}}</span>
+        <button (click)="removeText(campaignText.value)">remove</button>
+    </div>
+    <div class="campaignTextDiv">
+        <label class="campaignTextLabel">name:</label>
+        <input class="campaignTextInput" [(ngModel)]="campaignText.value.name" placeholder="name"/>
+    </div>
+    <div class="campaignTextDiv">
+        <label class="campaignTextLabel">stage:</label>
+        <input class="campaignTextInput" [(ngModel)]="campaignText.value.stage" placeholder="stage"/>
+    </div>
+    <div class="campaignTextDiv">
+        <label class="campaignTextLabel">text:</label>
+        <textarea [(ngModel)]="campaignText.value.text" placeholder="text"></textarea>
+    </div>
 </div>
+<button (click)="addText()">Add</button>

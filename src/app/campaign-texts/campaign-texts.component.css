@@ -1,0 +1,28 @@
+.campaignTextBlock {
+    left: 0;
+    border: 3px solid #73AD21;
+    padding: 10px;
+    overflow: hidden;
+    width: 100%; /* for good measure */
+}
+
+.campaignTextDiv {
+    float: left;
+    width: 100%;
+    text-align: left;
+}
+
+.campaignTextLabel {
+    width: 10%;
+    background-color: aquamarine;
+    padding: 3px;
+    margin: 3px;
+}
+
+.campaignTextInput {
+    width: 100px
+}
+
+.campaignTextId {
+    color: grey;
+}
